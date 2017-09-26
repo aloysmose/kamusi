@@ -1,51 +1,22 @@
 import React, { Component } from "react";
 import uuid from "uuid/v4";
+import { List } from "react-virtualized";
 import "./App.css";
-import a from "./eng-swa/eng-swa-a-entries.json";
-import b from "./eng-swa/eng-swa-b-entries.json";
-import c from "./eng-swa/eng-swa-c-entries.json";
+import * as dictionary from "./dictionary";
 
-const dictionary = {
-  a: a,
-  b: b,
-  c: c
-  // d: d,
-  // e: e,
-  // f: f,
-  // g: g,
-  // h: h,
-  // i: i,
-  // j: j,
-  // k: k,
-  // l: l,
-  // m: m,
-  // n: n,
-  // o: o,
-  // p: p,
-  // q: q,
-  // r: r,
-  // s: s,
-  // t: t,
-  // u: u,
-  // v: v,
-  // w: w,
-  // x: x,
-  // y: y,
-  // z: z
-};
-console.log(dictionary);
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      entries: a
+      active: "a",
+      ...dictionary
     };
   }
   loadEntries(letter = "a") {
     // console.log(letter);
     // console.log(dictionary[letter]);
     this.setState({
-      entries: dictionary[letter]
+      active: letter
     });
   }
   handleClick = event => {
@@ -54,6 +25,35 @@ class App extends Component {
     this.loadEntries(event.target.textContent.toLowerCase());
   };
   render() {
+    const {
+      active,
+      a,
+      b,
+      c,
+      d,
+      e,
+      f,
+      g,
+      h,
+      i,
+      j,
+      k,
+      l,
+      m,
+      n,
+      o,
+      p,
+      q,
+      r,
+      // s,
+      t,
+      u,
+      v,
+      w,
+      x,
+      y,
+      z
+    } = this.state;
     const links = [...Array(26)].map((l, i) => {
       return (
         <li key={uuid()}>
@@ -62,20 +62,91 @@ class App extends Component {
       );
     });
 
-    const entries = this.state.entries.map((entry, i) => {
+    const loadList = () => {
+      switch (active) {
+        case "a":
+          return a;
+        case "b":
+          return b;
+        case "c":
+          return c;
+        case "d":
+          return d;
+        case "e":
+          return e;
+        case "f":
+          return f;
+        case "g":
+          return g;
+        case "h":
+          return h;
+        case "i":
+          return i;
+        case "j":
+          return j;
+        case "k":
+          return k;
+        case "l":
+          return l;
+        case "m":
+          return m;
+        case "n":
+          return n;
+        case "o":
+          return o;
+        case "p":
+          return p;
+        case "q":
+          return q;
+        case "r":
+          return r;
+        case "s":
+          return ["Not available"];
+        case "t":
+          return t;
+        case "u":
+          return u;
+        case "v":
+          return v;
+        case "w":
+          return w;
+        case "x":
+          return x;
+        case "y":
+          return y;
+        case "z":
+          return z;
+        default:
+          return a;
+      }
+    };
+    const list = loadList();
+
+    const rowRenderer = ({
+      key, // Unique key within array of rows
+      index, // Index of row within collection
+      isScrolling, // The List is currently being scrolled
+      isVisible, // This row is visible within the List (eg it is not an overscanned row)
+      style // Style object to be applied to row (to position it)
+    }) => {
       return (
-        <li key={uuid()} className="entry">
-          {i + 1}
-          <p dangerouslySetInnerHTML={{ __html: entry }} />
-        </li>
+        <div key={key} style={style}>
+          <p dangerouslySetInnerHTML={{ __html: list[index] }} />
+        </div>
       );
-    });
+    };
 
     return (
       <div className="App">
         <h1>Kamusi</h1>
         <ul className="links">{links}</ul>
-        {<ul>{entries}</ul>}
+        <List
+          width={700}
+          height={700}
+          rowCount={list.length}
+          rowHeight={200}
+          rowRenderer={rowRenderer}
+        />
       </div>
     );
   }

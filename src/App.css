@@ -60,13 +60,5 @@ a:active {
 }
 
 .entry {
-  list-style-type: none;
-  width: 100%;
-  margin: 20px 0;
-  min-height: 200px;
-  background: #eee;
-}
-
-.entry p {
-  margin: 0;
+  border-bottom: 1px solid black;
 }
