@@ -59,6 +59,10 @@ a:active {
   list-style-type: none;
 }
 
-.entry {
+.dictionary_entry {
   border-bottom: 1px solid black;
+}
+
+.ReactVirtualized__Grid:focus {
+  outline: none;
 }

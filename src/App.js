@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import SearchInput, { createFilter } from "react-search-input";
 import uuid from "uuid/v4";
 import { List } from "react-virtualized";
 import "./App.css";
@@ -130,7 +131,7 @@ class App extends Component {
       style // Style object to be applied to row (to position it)
     }) => {
       return (
-        <div key={key} style={style}>
+        <div className="dictionary_entry" key={key} style={style}>
           <p dangerouslySetInnerHTML={{ __html: list[index] }} />
         </div>
       );
@@ -139,6 +140,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Kamusi</h1>
+        <h2>English - Kiswahili</h2>
         <ul className="links">{links}</ul>
         <List
           width={700}
