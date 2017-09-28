@@ -1,18 +1,40 @@
 import React, { Component } from "react";
-import SearchInput, { createFilter } from "react-search-input";
 import uuid from "uuid/v4";
 import { List } from "react-virtualized";
-import "./App.css";
+import Search from "./Search";
 import * as dictionary from "./dictionary";
+import "./App.css";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
+      query: "",
+      filteredEntries: [],
+      searching: false,
       active: "a",
       ...dictionary
     };
   }
+  search = query => {
+    const entries = this.state[this.state.active];
+    const filteredKeys = Object.keys(entries).filter(key => {
+      return key.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    });
+    const filteredEntries = filteredKeys.map(key => {
+      const value = entries[key];
+      return {
+        key,
+        value
+      };
+    });
+
+    this.setState({
+      // searching: true,
+      filteredEntries,
+      searching: true
+    });
+  };
   loadEntries(letter = "a") {
     // console.log(letter);
     // console.log(dictionary[letter]);
@@ -24,10 +46,12 @@ class App extends Component {
     // console.log(event.target.textContent);
     // console.log(event.currentTarget.textContent);
     this.loadEntries(event.target.textContent.toLowerCase());
+    this.setState({ searching: false });
   };
   render() {
     const {
       active,
+      searching,
       a,
       b,
       c,
@@ -124,6 +148,7 @@ class App extends Component {
     const listKeys = Object.keys(loadList());
     const listValues = Object.values(loadList());
 
+    // Virtual row
     const rowRenderer = ({
       key, // Unique key within array of rows
       index, // Index of row within collection
@@ -139,18 +164,31 @@ class App extends Component {
       );
     };
 
+    const filteredEntries = this.state.filteredEntries.map(entry => {
+      return (
+        <div key={entry.key} className="dictionary_entry">
+          <p dangerouslySetInnerHTML={{ __html: entry.key }} />
+          <p dangerouslySetInnerHTML={{ __html: entry.value }} />
+        </div>
+      );
+    });
+
     return (
       <div className="App">
         <h1>Kamusi</h1>
         <h2>English - Kiswahili</h2>
         <ul className="links">{links}</ul>
-        <List
-          width={700}
-          height={700}
-          rowCount={listKeys.length}
-          rowHeight={300}
-          rowRenderer={rowRenderer}
-        />
+        <Search onSearch={this.search} results={filteredEntries.length} />
+        {searching && filteredEntries}
+        {!searching && (
+          <List
+            width={700}
+            height={700}
+            rowCount={listKeys.length}
+            rowHeight={300}
+            rowRenderer={rowRenderer}
+          />
+        )}
       </div>
     );
   }
