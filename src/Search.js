@@ -6,6 +6,7 @@ class Search extends Component {
   };
 
   render() {
+    const { searching, results } = this.props;
     return (
       <div>
         <input
@@ -15,7 +16,7 @@ class Search extends Component {
           ref={input => (this.inputRef = input)}
           onBlur={() => (this.inputRef.value = "")}
         />
-        <div>{this.props.results}</div>
+        <div>{searching && results}</div>
       </div>
     );
   }

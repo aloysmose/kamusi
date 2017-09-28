@@ -37,8 +37,8 @@ const deDupe = pages => {
     // console.log(util.inspect(entries, { depth: null, colors: true }));
 
     fs.writeFile(
-      `./dict-object/eng-swa-${letter(i)}-entries.json`,
-      // `./dict-array/swa-eng/swa-eng-${letter(i)}-entries.json`,
+      // `./dict-objects/eng-swa/eng-swa-${letter(i)}-entries.json`,
+      `./dict-objects/swa-eng/swa-eng-${letter(i)}-entries.json`,
       JSON.stringify(entries),
       "utf-8",
       err => {
@@ -60,10 +60,10 @@ const deDupe = pages => {
 };
 
 // console.log("ENG-SWA:");
-deDupe(pagesEngSwa);
+// deDupe(pagesEngSwa);
 // console.log("\n");
 // console.log("SWA-ENG:");
-// deDupe(pagesSwaEng);
+deDupe(pagesSwaEng);
 
 // const requireFiles = () => {
 //   const letters = [
