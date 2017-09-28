@@ -19,7 +19,6 @@ const deDupe = pages => {
       // console.log(entry);
     });
 
-    // TODO: Look for anomalies
     page.forEach((entry, j) => {
       let startBold = entry.indexOf("<b>");
       let endBold = entry.indexOf("</b>");
@@ -31,14 +30,14 @@ const deDupe = pages => {
         let sup = entry.slice(startSup, endSup + 6);
         word = word += sup;
       }
-      entries[word] = `<p> ${entry}`;
+      entries[word] = `<p> ${entry}`
     });
     // console.log(dictionary);
     // console.log(util.inspect(entries, { depth: null, colors: true }));
 
     fs.writeFile(
-      // `./dict-objects/eng-swa/eng-swa-${letter(i)}-entries.json`,
-      `./dict-objects/swa-eng/swa-eng-${letter(i)}-entries.json`,
+      `./dict-objects/eng-swa/eng-swa-${letter(i)}-entries.json`,
+      // `./dict-objects/swa-eng/swa-eng-${letter(i)}-entries.json`,
       JSON.stringify(entries),
       "utf-8",
       err => {
@@ -60,10 +59,10 @@ const deDupe = pages => {
 };
 
 // console.log("ENG-SWA:");
-// deDupe(pagesEngSwa);
+deDupe(pagesEngSwa);
 // console.log("\n");
 // console.log("SWA-ENG:");
-deDupe(pagesSwaEng);
+// deDupe(pagesSwaEng);
 
 // const requireFiles = () => {
 //   const letters = [

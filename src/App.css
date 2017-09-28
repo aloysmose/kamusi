@@ -13,7 +13,7 @@ a {
   color: blue;
 }
 a:hover,
-a:active {
+a:active, {
   cursor: pointer;
   color: purple;
 }

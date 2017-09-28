@@ -12,7 +12,7 @@ class Search extends Component {
         <input
           type="text"
           onChange={this.handleChange}
-          placeholder="Search"
+          placeholder="Basic search"
           ref={input => (this.inputRef = input)}
           onBlur={() => (this.inputRef.value = "")}
         />
