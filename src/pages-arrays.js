@@ -14,19 +14,19 @@ const deDupe = pages => {
       return entry.indexOf("PREPENDED TO NEXT ENTRY") === -1 && i !== 0;
       // console.log(entry);
     });
-    fs.writeFile(
-      `./dict-array/eng-swa/eng-swa-${letter(i)}-entries.json`,
-      // `./dict-array/swa-eng/swa-eng-${letter(i)}-entries.json`,
-      JSON.stringify(page),
-      "utf-8",
-      err => {
-        if (err) {
-          console.log(err);
-        } else {
-          // resolve();
-        }
-      }
-    );
+    // fs.writeFile(
+    //   `./dict-array/eng-swa/eng-swa-${letter(i)}-entries.json`,
+    //   // `./dict-array/swa-eng/swa-eng-${letter(i)}-entries.json`,
+    //   JSON.stringify(page),
+    //   "utf-8",
+    //   err => {
+    //     if (err) {
+    //       console.log(err);
+    //     } else {
+    //       // resolve();
+    //     }
+    //   }
+    // );
     totalAfter += page.length;
 
     // console.log("AFTER:", page.length);

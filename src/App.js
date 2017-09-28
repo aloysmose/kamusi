@@ -121,7 +121,8 @@ class App extends Component {
           return a;
       }
     };
-    const list = loadList();
+    const listKeys = Object.keys(loadList());
+    const listValues = Object.values(loadList());
 
     const rowRenderer = ({
       key, // Unique key within array of rows
@@ -132,7 +133,8 @@ class App extends Component {
     }) => {
       return (
         <div className="dictionary_entry" key={key} style={style}>
-          <p dangerouslySetInnerHTML={{ __html: list[index] }} />
+          <p dangerouslySetInnerHTML={{ __html: listKeys[index] }} />
+          <p dangerouslySetInnerHTML={{ __html: listValues[index] }} />
         </div>
       );
     };
@@ -145,8 +147,8 @@ class App extends Component {
         <List
           width={700}
           height={700}
-          rowCount={list.length}
-          rowHeight={200}
+          rowCount={listKeys.length}
+          rowHeight={300}
           rowRenderer={rowRenderer}
         />
       </div>
