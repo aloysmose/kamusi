@@ -38,8 +38,10 @@ const Main = ({
   onSaveEntry,
   searching 
 }) => {
-  const entryKeys = Object.keys(loadEntries(dictionary, page));
-  const entryValues = Object.values(loadEntries(dictionary, page));
+  const entries = loadEntries(dictionary, page);
+  const entryKeys = Object.keys(entries);
+  // const entryValues = Object.values(loadEntries(dictionary, page));
+  const entryValues = Object.keys(entries).map(key => entries[key]);
 
   // Virtual row
   const rowRenderer = ({
