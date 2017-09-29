@@ -89,7 +89,7 @@ const Main = ({
       <Entry key={entry.key} className="dictionary_entry">
         <EntryHeader>
           <p dangerouslySetInnerHTML={{ __html: key }} />
-          <a onClick={() => this.saveEntry(key, entry)}>
+          <a onClick={() => onSaveEntry(key, entry)}>
             <FontAwesome name={saved[key] ? "star" : "star-o"} />
           </a>
         </EntryHeader>
