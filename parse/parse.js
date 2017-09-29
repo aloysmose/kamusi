@@ -36,7 +36,7 @@ const deDupe = pages => {
     // console.log(util.inspect(entries, { depth: null, colors: true }));
 
     fs.writeFile(
-      `./dict-objects/eng-swa/eng-swa-${letter(i)}-entries.json`,
+      `./dictionary/eng-swa/eng-swa-${letter(i)}-entries.json`,
       // `./dict-objects/swa-eng/swa-eng-${letter(i)}-entries.json`,
       JSON.stringify(entries),
       "utf-8",
@@ -59,55 +59,7 @@ const deDupe = pages => {
 };
 
 // console.log("ENG-SWA:");
-deDupe(pagesEngSwa);
+// deDupe(pagesEngSwa);
 // console.log("\n");
 // console.log("SWA-ENG:");
 // deDupe(pagesSwaEng);
-
-// const requireFiles = () => {
-//   const letters = [
-//     "a",
-//     "b",
-//     "c",
-//     "d",
-//     "e",
-//     "f",
-//     "g",
-//     "h",
-//     "i",
-//     "j",
-//     "k",
-//     "l",
-//     "m",
-//     "n",
-//     "o",
-//     "p",
-//     "q",
-//     "r",
-//     "t",
-//     "u",
-//     "v",
-//     "w",
-//     "x",
-//     "y",
-//     "z"
-//   ];
-
-//   let dictionary = {};
-
-//   letters.forEach((letter, i) => {
-//     // letter = require(`./dict-array/eng-swa/eng-swa-${letter}-entries.json`);
-
-//     if (i < 1) {
-//       letter.forEach(entry => {
-//         let startIndex = entry.indexOf("<b>");
-//         let endIndex = entry.indexOf("</b>");
-//         console.log(entry.slice(startIndex, endIndex));
-//         // dictionary
-//       });
-//     }
-//   });
-//   // return dictionary;
-// };
-
-// requireFiles();

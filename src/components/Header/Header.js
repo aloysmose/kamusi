@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Links from '../Links/Links';
 import FontAwesome from "react-fontawesome";
 
 const FromDirection = styled.span`
@@ -11,7 +12,15 @@ const ToDirection = styled.span`
 const ExchangeIcon = styled(FontAwesome)`
   color: black;
 `;
-const Header = ({ direction, onChangeDirection }) => {
+const Header = ({ 
+  direction, 
+  onChangeDirection, 
+  onChangePage,
+  showingSaved, 
+  page, 
+  onShowSaved 
+}) => {
+
   return (
     <div>
       {direction === "eng-swa" &&
@@ -32,6 +41,13 @@ const Header = ({ direction, onChangeDirection }) => {
           </a>
         </div>
       }
+      <Links 
+        showingSaved={showingSaved} 
+        page={page} 
+        direction={direction} 
+        onShowSaved={onShowSaved} 
+        onChangePage={onChangePage}
+      />
     </div>
   );
 };

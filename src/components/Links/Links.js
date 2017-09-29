@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import FontAwesome from "react-fontawesome";
-import { getLetter } from './utilities';
+import { getLetter } from '../../utilities';
 
-const Links = styled.ul`
+const List = styled.ul`
   font-size: .9em;
   margin: 10px 0;
 `;
-const Link = styled.a`
+const Anchor = styled.a`
   font-weight: bold;
   cursor: pointer;
   &:hover, active {
@@ -22,9 +22,9 @@ const SavedLink = styled.a`
   }
   color: ${({ showingSaved }) => showingSaved ? "purple" : "blue" }
 `;
-const PageLinks = ({ page, direction, onLoadEntries, onShowSaved, showingSaved }) => {
+const Links = ({ page, direction, onChangePage, onShowSaved, showingSaved }) => {
   const handleClick = event => {
-    onLoadEntries(event.target.textContent.toLowerCase());
+    onChangePage(event.target.textContent.toLowerCase());
   };
   const links = [...Array(26)].map((l, i) => {
     let linkClassName = "";
@@ -39,18 +39,18 @@ const PageLinks = ({ page, direction, onLoadEntries, onShowSaved, showingSaved }
     
     return (
       <li className={linkClassName} key={letter} >
-        <Link active={active} onClick={(event) => handleClick(event)}>{getLetter(i)}</Link>
+        <Anchor active={active} onClick={(event) => handleClick(event)}>{getLetter(i)}</Anchor>
       </li>
     );
   });
   return (
-    <Links className="links">
+    <List className="links">
       <SavedLink showingSaved={showingSaved} onClick={onShowSaved}>
         <FontAwesome name="star" />
       </SavedLink>
       {links}
-    </Links>
+    </List>
   );
 };
 
-export default PageLinks;
+export default Links;
