@@ -1,22 +1,26 @@
 h1 {
   font-size: 1em;
 }
+
 .sub-heading {
   font-size: 1em;
 }
-p {
-  padding: 20px;
+
+p, ul, li {
+  margin: 0;
+  padding: 0;
 }
 
 a {
+  cursor: pointer;
   font-size: 2em;
   color: blue;
 }
 a:hover,
-a:active, {
-  cursor: pointer;
+a:active {
   color: purple;
 }
+
 .hide {
   display: none;
 }
@@ -68,13 +72,7 @@ a:active, {
   list-style-type: none;
 }
 
-.dictionary_entry {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  border-bottom: 1px solid black;
-}
-
+.ReactVirtualized__Grid,
 .ReactVirtualized__Grid:focus {
   outline: none;
 }

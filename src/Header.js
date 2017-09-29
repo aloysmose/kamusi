@@ -1,6 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 import FontAwesome from "react-fontawesome";
 
+const FromDirection = styled.span`
+  color: red;
+`;
+const ToDirection = styled.span`
+  color: green;
+`;
+const ExchangeIcon = styled(FontAwesome)`
+  color: black;
+`;
 const Header = ({ direction, onChangeDirection }) => {
   return (
     <div>
@@ -8,20 +18,18 @@ const Header = ({ direction, onChangeDirection }) => {
         <div>
           <a onClick={onChangeDirection}>
             <h1>
-              English <FontAwesome name="exchange" /> Swahili
+              <FromDirection>English</FromDirection> <ExchangeIcon name="exchange" /> <ToDirection>Swahili</ToDirection>
             </h1>
           </a>
-          Source: <a className="sub-heading" href="http://www.elimuyetu.co.tz/subjects/arts/eng-swa/">TUKI English &mdash; Swahili Dictionary</a>
         </div>
       }
       {direction === "swa-eng" &&
         <div>
           <a  onClick={onChangeDirection}>
             <h1>
-              Kiswahili <FontAwesome name="exchange" /> Kiingereza
+              <FromDirection>Kiswahili</FromDirection> <ExchangeIcon name="exchange" /> <ToDirection>Kiingereza</ToDirection>
             </h1>
           </a>
-          Source: <a className="sub-heading" href="http://www.elimuyetu.co.tz/subjects/arts/swa-eng/">TUKI Kamusi ya Kiswahili &mdash; Kiingereza</a>
         </div>
       }
     </div>

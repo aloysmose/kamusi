@@ -3,8 +3,12 @@ import styled from 'styled-components';
 import FontAwesome from "react-fontawesome";
 import { getLetter } from './utilities';
 
-const PageLink = styled.a`
-  color: blue;
+const Links = styled.ul`
+  font-size: .9em;
+  margin: 10px 0;
+`;
+const Link = styled.a`
+  font-weight: bold;
   cursor: pointer;
   &:hover, active {
     color: purple;
@@ -35,17 +39,17 @@ const PageLinks = ({ page, direction, onLoadEntries, onShowSaved, showingSaved }
     
     return (
       <li className={linkClassName} key={letter} >
-        <PageLink active={active} onClick={(event) => handleClick(event)}>{getLetter(i)}</PageLink>
+        <Link active={active} onClick={(event) => handleClick(event)}>{getLetter(i)}</Link>
       </li>
     );
   });
   return (
-    <ul className="links">
+    <Links className="links">
       <SavedLink showingSaved={showingSaved} onClick={onShowSaved}>
         <FontAwesome name="star" />
       </SavedLink>
       {links}
-    </ul>
+    </Links>
   );
 };
 

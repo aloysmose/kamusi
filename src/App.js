@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import FontAwesome from "react-fontawesome";
 import { List } from "react-virtualized";
 import { loadEntries } from './utilities';
@@ -10,6 +10,33 @@ import * as engSwaDict from "./eng-swa-dictionary";
 import * as swaEngDict from "./swa-eng-dictionary";
 import "./App.css";
 
+const Entry = styled.li`
+  min-height: 100px;
+  margin: 0 0 20px 0;
+  padding: 10px;
+  // background-color: rgb(250, 250, 250);
+  width: 97% !important;
+  text-align: left;
+  list-style-type: none;
+`;
+const EntryHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  p {
+    font-size: 2em;
+    margin: 0 10px 0 0;
+  }
+`;
+const EntryBody = styled.p`
+  line-height: 1.5;
+  font-size: 1.2em;
+  margin: 10px;
+`;
+const Footer = styled.footer`
+  font-size: 1.2em;
+  margin-top: 30px;
+`;
 class App extends Component {
   constructor() {
     super();
@@ -116,13 +143,15 @@ class App extends Component {
       const entryValue = entryValues[index];
 
       return (
-        <ul className="dictionary_entry" key={key} style={style}>
-          <li dangerouslySetInnerHTML={{ __html: entryKey }} />
-          <li dangerouslySetInnerHTML={{ __html: entryValue }} />
-          <a onClick={() => this.saveEntry(entryKey, { value: entryValue, saved: saved[entryKey] })}>
-            <FontAwesome name={saved[entryKey] ? "star" : "star-o"} />
-          </a>
-        </ul> 
+        <Entry className="dictionary_entry" key={key} style={style}>
+          <EntryHeader>
+            <p dangerouslySetInnerHTML={{ __html: entryKey }} />
+            <a onClick={() => this.saveEntry(entryKey, { value: entryValue, saved: saved[entryKey] })}>
+              <FontAwesome name={saved[entryKey] ? "star" : "star-o"} />
+            </a>
+          </EntryHeader>
+          <EntryBody dangerouslySetInnerHTML={{ __html: entryValue }} />
+        </Entry> 
       );
     };
 
@@ -130,26 +159,30 @@ class App extends Component {
       const entry = saved[key];
 
       return (
-        <li key={key} className="dictionary_entry">
-          <p dangerouslySetInnerHTML={{ __html: key }} />
-          <p dangerouslySetInnerHTML={{ __html: entry.value }} />
-          <a onClick={() => this.saveEntry(key, entry)}>
-            <FontAwesome name={saved[key] ? "star" : "star-o"} />
-          </a>
-        </li>
+        <Entry key={key} className="dictionary_entry">
+          <EntryHeader>
+            <p dangerouslySetInnerHTML={{ __html: key }} />
+            <a onClick={() => this.saveEntry(key, entry)}>
+              <FontAwesome name={saved[key] ? "star" : "star-o"} />
+            </a>
+          </EntryHeader>
+          <EntryBody dangerouslySetInnerHTML={{ __html: entry.value }} />
+        </Entry>
       );
     });
 
     const filteredEntries = this.state.filteredEntries.map(entry => {
       const { key, value } = entry;
       return (
-        <li key={entry.key} className="dictionary_entry">
-          <p dangerouslySetInnerHTML={{ __html: key }} />
-          <p dangerouslySetInnerHTML={{ __html: value }} />
-          <a onClick={() => this.saveEntry(key, entry)}>
-            <FontAwesome name={saved[key] ? "star" : "star-o"} />
-          </a>
-        </li>
+        <Entry key={entry.key} className="dictionary_entry">
+          <EntryHeader>
+            <p dangerouslySetInnerHTML={{ __html: key }} />
+            <a onClick={() => this.saveEntry(key, entry)}>
+              <FontAwesome name={saved[key] ? "star" : "star-o"} />
+            </a>
+          </EntryHeader>
+          <EntryBody dangerouslySetInnerHTML={{ __html: value }} />
+        </Entry>
       );
     });
     return (
@@ -165,7 +198,7 @@ class App extends Component {
         }
         {showingSaved && 
           <ul>
-            <div>{Object.keys(savedEntries).length}</div>
+            <div>{Object.keys(savedEntries).length + " saved"}</div>
             {savedEntries}
           </ul>
         }
@@ -175,12 +208,16 @@ class App extends Component {
         {!searching && !showingSaved &&
           <List
             width={700}
-            height={700}
+            height={600}
             rowCount={entryKeys.length}
             rowHeight={300}
             rowRenderer={rowRenderer}
           />
         }
+        <Footer>
+          {direction === 'eng-swa' && <a className="sub-heading" href="http://www.elimuyetu.co.tz/subjects/arts/eng-swa/">TUKI English &mdash; Swahili Dictionary</a>}
+          {direction === 'swa-eng' && <a className="sub-heading" href="http://www.elimuyetu.co.tz/subjects/arts/swa-eng/">TUKI Kamusi ya Kiswahili &mdash; Kiingereza</a>}
+        </Footer>
       </div>
     );
   }
