@@ -30,6 +30,7 @@ const EntryBody = styled.p`
 
 const Main = ({ 
   page, 
+  direction,
   saved,
   filtered,
   dictionary, 
@@ -102,9 +103,10 @@ const Main = ({
     <main className="main">
       {!showingSaved && 
         <Search
-        onSearch={onSearch}
-        searching={searching}
-        results={filteredEntries.length}
+          direction={direction}
+          onSearch={onSearch}
+          searching={searching}
+          results={filteredEntries.length}
         />
       }
       {showingSaved && 
@@ -119,7 +121,7 @@ const Main = ({
       {!searching && !showingSaved &&
         <List
         width={700}
-          height={600}
+          height={500}
           rowCount={entryKeys.length}
           rowHeight={300}
           rowRenderer={rowRenderer}

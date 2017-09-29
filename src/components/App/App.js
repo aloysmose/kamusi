@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Header from '../Header/Header';
 import Main from '../Main/Main';
-import Footer from '../Footer/Footer';
 import * as engSwaDict from "../../dictionary/eng-swa";
 import * as swaEngDict from "../../dictionary/swa-eng";
 import "./App.css";
@@ -12,7 +11,8 @@ class App extends Component {
     this.state = {
       query: "",
       filtered: [],
-      saved: JSON.parse(localStorage.getItem('kamusi-saved-entries')) || {},
+      // saved: JSON.parse(localStorage.getItem('kamusi-saved-entries')) || {},
+      saved: JSON.parse(localStorage.getItem('kamusi-saved-entries-dev')) || {},
       showingSaved: false,
       searching: false,
       direction: "eng-swa",
@@ -22,7 +22,8 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    localStorage.setItem('kamusi-saved-entries', JSON.stringify(this.state.saved));
+    localStorage.setItem('kamusi-saved-entries-dev', JSON.stringify(this.state.saved));
+    // localStorage.setItem('kamusi-saved-entries', JSON.stringify(this.state.saved));
   }
 
   search = query => {
@@ -113,6 +114,7 @@ class App extends Component {
           onShowSaved={this.showSaved}
         />
         <Main 
+          direction={direction}
           saved={saved}
           page={page}
           filtered={filtered}
@@ -122,7 +124,6 @@ class App extends Component {
           onSaveEntry={this.saveEntry}
           searching={searching}
         />
-        <Footer direction={direction} />
       </div>
     );
   }

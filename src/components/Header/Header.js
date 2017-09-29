@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import Footer from '../Footer/Footer';
+
 import Links from '../Links/Links';
 import FontAwesome from "react-fontawesome";
 
+const Container = styled.header`
+  margin-top: 50px;
+`;
 const FromDirection = styled.span`
   color: red;
 `;
@@ -22,7 +27,8 @@ const Header = ({
 }) => {
 
   return (
-    <div>
+    <Container>
+      <Footer direction={direction} />
       {direction === "eng-swa" &&
         <div>
           <a onClick={onChangeDirection}>
@@ -48,7 +54,7 @@ const Header = ({
         onShowSaved={onShowSaved} 
         onChangePage={onChangePage}
       />
-    </div>
+    </Container>
   );
 };
 

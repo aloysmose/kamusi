@@ -20,9 +20,10 @@ a:hover,
 a:active {
   color: purple;
 }
-
-.hide {
-  display: none;
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.5;
 }
 
 .App {

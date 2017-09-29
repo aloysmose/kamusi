@@ -22,18 +22,18 @@ class Search extends Component {
   };
 
   render() {
-    const { searching, results } = this.props;
+    const { searching, results, direction } = this.props;
     return (
-      <d>
+      <div>
         <Input
           autoFocus
           type="text"
           onChange={this.handleChange}
-          placeholder="Basic search"
+          placeholder={direction === "eng-swa" ? "Search" : "Kutafuta"} 
         />
         <SearchIcon name="search" />
         <Results className="results">{searching && results.toLocaleString() + " results"}</Results>
-      </d>
+      </div>
     );
   }
 }
