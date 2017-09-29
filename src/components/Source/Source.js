@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Container = styled.footer`
+const Container = styled.div`
+  a { 
+    color: cornflowerblue;
+  }
   font-size: 1em;
 `;
-const Footer = ({ direction }) => {
+const Source = ({ direction }) => {
   return (
     <Container>
       {direction === 'eng-swa' ? "Source: " : "Chanzo: "}
@@ -14,4 +17,4 @@ const Footer = ({ direction }) => {
   );
 };
 
-export default Footer;
+export default Source;

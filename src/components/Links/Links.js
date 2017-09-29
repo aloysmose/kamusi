@@ -6,25 +6,16 @@ import { getLetter } from '../../utilities';
 const List = styled.ul`
   font-size: .9em;
   margin: 20px 0;
+  text-decoration: ${({ active }) => active ? "underline" : "none" };
 `;
 const Anchor = styled.a`
-  // pointer-events: ${({ disabled }) => disabled ? "none" : "initial" }
-  // cursor: ${({ disabled }) => disabled ? "default" : "initial" }
-  // opacity: ${({ disabled }) => disabled ? ".5" : "1" }
+  // color: #70B7FD;
+  color: cornflowerblue;
   font-weight: bold;
   cursor: pointer;
-  &:hover, active {
-    color: purple;
-  }
-  color: ${({ active }) => active ? "purple" : "blue" }
+  text-decoration: ${({ active }) => active ? "underline" : "none" };
 `;
-const SavedLink = styled.a`
-  cursor: pointer;
-  &:hover, active {
-    color: purple;
-  }
-  color: ${({ showingSaved }) => showingSaved ? "purple" : "blue" }
-`;
+
 const Links = ({ page, direction, onChangePage, onShowSaved, showingSaved }) => {
   const handleClick = event => {
     onChangePage(event.target.textContent.toLowerCase());
@@ -39,17 +30,19 @@ const Links = ({ page, direction, onChangePage, onShowSaved, showingSaved }) => 
       anchorClassName = "disabled";
     }
     const active = letter === page && !showingSaved ? true : false;
+
     return (
       <li key={letter} >
         <Anchor className={anchorClassName} active={active} onClick={(event) => handleClick(event)}>{getLetter(i)}</Anchor>
       </li>
     );
   });
+  console.log(showingSaved);
   return (
     <List className="links">
-      <SavedLink showingSaved={showingSaved} onClick={onShowSaved}>
-        <FontAwesome name="star" />
-      </SavedLink>
+      <Anchor active={showingSaved} onClick={onShowSaved}>
+        <FontAwesome name={showingSaved ? "star" : "star-o"} />
+      </Anchor>
       {links}
     </List>
   );

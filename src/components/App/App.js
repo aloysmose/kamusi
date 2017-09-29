@@ -108,10 +108,12 @@ class App extends Component {
     return (
       <div className="App">
         <Header 
+          page={page}
           direction={direction} 
           onChangeDirection={this.changeDirection}
           onChangePage={this.changePage}
           onShowSaved={this.showSaved}
+          showingSaved={showingSaved}
         />
         <Main 
           direction={direction}

@@ -4,6 +4,10 @@ import FontAwesome from 'react-fontawesome';
 
 const Input = styled.input`
   font-size: 1.5em;
+  padding: 5px;
+  &:focus {
+    outline: none;
+  }
 `;
 const Results = styled.div`
   font-size: .9em;
@@ -13,7 +17,7 @@ const Results = styled.div`
 const SearchIcon = styled(FontAwesome)`
   font-size: 1.5em !important;
   position: relative;
-  left: -27px;
+  left: -30px;
   opacity: .5
 `;
 class Search extends Component {
@@ -29,7 +33,7 @@ class Search extends Component {
           autoFocus
           type="text"
           onChange={this.handleChange}
-          placeholder={direction === "eng-swa" ? "Search" : "Kutafuta"} 
+          placeholder={direction === "eng-swa" ? "Search" : "Tafuta"} 
         />
         <SearchIcon name="search" />
         <Results className="results">{searching && results.toLocaleString() + " results"}</Results>

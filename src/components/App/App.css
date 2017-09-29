@@ -12,13 +12,17 @@ p, ul, li {
 }
 
 a {
+  text-decoration: none;
   cursor: pointer;
   font-size: 2em;
-  color: blue;
+  color: #70B7FD;
+  color: cornflowerblue;
+  color: #FD6C6C;
+  color: #64CEAA;
 }
 a:hover,
 a:active {
-  color: purple;
+  text-decoration: underline;
 }
 .disabled {
   pointer-events: none;
@@ -33,6 +37,7 @@ a:active {
   margin: 0 auto;
   padding: 0 20px;
   text-align: center;
+  color: #555;
 }
 
 .App-header {
