@@ -23,23 +23,29 @@ const ToDirection = styled.span`
   // color: #26B53F; // Green 1
   // color: #70B7FD; // Blue 2
   // color: #1BA5DC; // Blue 1
-  `;
+`;
 const ExchangeIcon = styled(FontAwesome)`
   color: #555;
   color: #64CEAA;  // Green 2
   // color: #FBD133; // Yellow 1
 `;
+const Heading = styled.div`
+`;
+// const PhraseBookAnchor = styled.a`
+//   font-size: 1em;
+//   color: cornflowerblue;
+// `;
 const Header = ({ 
   page, 
-  direction, 
+  englishToSwahili,
   onChangeDirection, 
   onChangePage,
   showingSaved, 
   onShowSaved 
 }) => {
-  console.log(page);
   return (
     <Container>
+      <Source englishToSwahili={englishToSwahili} />
       <a href="https://github.com/bantuist/kamusi" className="github-corner" aria-label="View source on Github">
         <svg className="svg" width="80" height="80" viewBox="0 0 250 250">
           <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z" />
@@ -54,29 +60,29 @@ const Header = ({
           />
         </svg>
       </a>
-      <Source direction={direction} />
-      {direction === "eng-swa" &&
-        <div>
+      <Heading>
+        {englishToSwahili &&
           <Anchor onClick={onChangeDirection}>
             <h1>
               <FromDirection>English</FromDirection> <ExchangeIcon name="exchange" /> <ToDirection>Swahili</ToDirection>
             </h1>
           </Anchor>
-        </div>
-      }
-      {direction === "swa-eng" &&
-        <div>
+        }
+        {!englishToSwahili &&
           <Anchor  onClick={onChangeDirection}>
             <h1>
               <FromDirection>Kiswahili</FromDirection> <ExchangeIcon name="exchange" /> <ToDirection>Kiingereza</ToDirection>
             </h1>
           </Anchor>
-        </div>
-      }
+        }
+        {/*<PhraseBookAnchor active={showingSaved} onClick={onShowSaved}>
+          {englishToSwahili ? "Phrasebook" : "Kitabu cha Tafsiri"}
+      </PhraseBookAnchor>*/}
+      </Heading>
       <Links 
         showingSaved={showingSaved} 
         page={page} 
-        direction={direction} 
+        englishToSwahili={englishToSwahili}
         onShowSaved={onShowSaved} 
         onChangePage={onChangePage}
       />

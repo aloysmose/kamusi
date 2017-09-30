@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import FontAwesome from "react-fontawesome";
 import { getLetter } from '../../utilities';
 
 const List = styled.ul`
   font-size: .9em;
-  margin: 20px 0;
+  margin: 0 0 10px 0;
   text-decoration: ${({ active }) => active ? "underline" : "none" };
 `;
 const Anchor = styled.a`
@@ -16,7 +15,7 @@ const Anchor = styled.a`
   text-decoration: ${({ active }) => active ? "underline" : "none" };
 `;
 
-const Links = ({ page, direction, onChangePage, onShowSaved, showingSaved }) => {
+const Links = ({ page, englishToSwahili, onChangePage, onShowSaved, showingSaved }) => {
   const handleClick = event => {
     onChangePage(event.target.textContent.toLowerCase());
   };
@@ -24,9 +23,9 @@ const Links = ({ page, direction, onChangePage, onShowSaved, showingSaved }) => 
     let anchorClassName = "";
     const letter = getLetter(i).toLowerCase();
 
-    if (direction === "eng-swa" && letter === "s") {
+    if (englishToSwahili && letter === "s") {
       anchorClassName = "disabled";
-    } else if (direction === "swa-eng" && (letter === "q" || letter === "x")) {
+    } else if (!englishToSwahili && (letter === "q" || letter === "x")) {
       anchorClassName = "disabled";
     }
     const active = letter === page && !showingSaved ? true : false;
@@ -37,12 +36,8 @@ const Links = ({ page, direction, onChangePage, onShowSaved, showingSaved }) => 
       </li>
     );
   });
-  console.log(showingSaved);
   return (
     <List className="links">
-      <Anchor active={showingSaved} onClick={onShowSaved}>
-        <FontAwesome name={showingSaved ? "star" : "star-o"} />
-      </Anchor>
       {links}
     </List>
   );

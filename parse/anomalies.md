@@ -1,1 +1,4 @@
-- swa-eng: mzabuni - mzeituni correctly
+- swa-eng-m: mzabuni - mzeituni correctly
+- suffixes e.g. swa-eng-e -enye, -enu, -enyewe
+- raison d'etre/rake parsing error
+- bee/bonnet

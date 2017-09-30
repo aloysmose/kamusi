@@ -11,19 +11,18 @@ class App extends Component {
     this.state = {
       query: "",
       filtered: [],
-      // saved: JSON.parse(localStorage.getItem('kamusi-saved-entries')) || {},
-      saved: JSON.parse(localStorage.getItem('kamusi-saved-entries-dev')) || {},
+      saved: JSON.parse(localStorage.getItem('kamusi-saved-entries')) || {},
       showingSaved: false,
       searching: false,
       direction: "eng-swa",
+      englishToSwahili: true,
       page: "a",
       dictionary: engSwaDict
     };
   }
 
   componentDidUpdate() {
-    localStorage.setItem('kamusi-saved-entries-dev', JSON.stringify(this.state.saved));
-    // localStorage.setItem('kamusi-saved-entries', JSON.stringify(this.state.saved));
+    localStorage.setItem('kamusi-saved-entries', JSON.stringify(this.state.saved));
   }
 
   search = query => {
@@ -90,6 +89,7 @@ class App extends Component {
       searching: false,
       showingSaved: false,
       direction: direction === "eng-swa" ? "swa-eng" : "eng-swa",
+      englishToSwahili: !this.state.englishToSwahili,
       dictionary: direction === "eng-swa" ? swaEngDict : engSwaDict
     });
   };
@@ -102,6 +102,7 @@ class App extends Component {
       showingSaved,
       searching,
       direction,
+      englishToSwahili,
       dictionary
     } = this.state;
     
@@ -109,19 +110,21 @@ class App extends Component {
       <div className="App">
         <Header 
           page={page}
-          direction={direction} 
+          englishToSwahili={englishToSwahili}
           onChangeDirection={this.changeDirection}
           onChangePage={this.changePage}
           onShowSaved={this.showSaved}
           showingSaved={showingSaved}
         />
         <Main 
+          englishToSwahili={englishToSwahili}
           direction={direction}
           saved={saved}
           page={page}
           filtered={filtered}
           dictionary={dictionary}
           showingSaved={showingSaved}
+          onShowSaved={this.showSaved}
           onSearch={this.search}
           onSaveEntry={this.saveEntry}
           searching={searching}

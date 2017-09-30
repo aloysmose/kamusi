@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import FontAwesome from 'react-fontawesome';
 
 const Input = styled.input`
+  width: 300px;
   font-size: 1.5em;
   padding: 5px;
   &:focus {
@@ -26,17 +27,25 @@ class Search extends Component {
   };
 
   render() {
-    const { searching, results, direction } = this.props;
+    const { page, searching, wordCount, englishToSwahili } = this.props;
     return (
       <div>
         <Input
           autoFocus
           type="text"
           onChange={this.handleChange}
-          placeholder={direction === "eng-swa" ? "Search" : "Tafuta"} 
+          placeholder={englishToSwahili ? `Search for "${page}" words` : `Tafuta maneno ya "${page}"`} 
+          innerRef={comp => this.input = comp}
+          onBlur={() => this.input.value = ""}
         />
         <SearchIcon name="search" />
-        <Results className="results">{searching && results.toLocaleString() + " results"}</Results>
+        <Results className="results">
+          {searching && 
+            (englishToSwahili 
+              ? `${wordCount.toLocaleString()} words` 
+              : `Maneno ${wordCount.toLocaleString()}`)
+          }
+        </Results>
       </div>
     );
   }
