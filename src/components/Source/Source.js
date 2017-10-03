@@ -5,9 +5,9 @@ const Container = styled.div`
   position: absolute;
   top: 5px;
   left: 5px;
+  color: cornflowerblue;
   a { 
-    color: #64CEAA;  // Green 2
-    // color: cornflowerblue;
+    color: cornflowerblue;
   }
   font-size: 1em;
 `;

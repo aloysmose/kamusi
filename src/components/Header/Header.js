@@ -8,6 +8,11 @@ import './Header.css';
 
 const Container = styled.header`
   margin-top: 50px;
+  code {
+    font-size: 1.5em;
+    color: cornflowerblue;
+    font-weight: bold;
+  }
 `;
 const Anchor = styled.a`
   &:hover {
@@ -21,8 +26,6 @@ const FromDirection = styled.span`
 const ToDirection = styled.span`
   color: #64CEAA;  // Green 2
   // color: #26B53F; // Green 1
-  // color: #70B7FD; // Blue 2
-  // color: #1BA5DC; // Blue 1
 `;
 const ExchangeIcon = styled(FontAwesome)`
   color: #555;
@@ -45,8 +48,9 @@ const Header = ({
 }) => {
   return (
     <Container>
+      <code>{'<'}UnderDevelopment {'/>'}</code>
       <Source englishToSwahili={englishToSwahili} />
-      <a href="https://github.com/bantuist/kamusi" className="github-corner" aria-label="View source on Github">
+      <a href="https://github.com/bantuist/kamusi" className="corner" aria-label="View source on Github">
         <svg className="svg" width="80" height="80" viewBox="0 0 250 250">
           <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z" />
           <path
