@@ -7,6 +7,8 @@ English ⇄ Swahili Dictionary and Phrasebook
 
 
 # Todo
+- [ ] Save to Google Drive
+- [ ] [Complete Progressive Web App checklist](https://developers.google.com/web/progressive-web-apps/checklist)
 - Search
   - [ ] Search entire dictionary
   - [ ] Improve rendering performance

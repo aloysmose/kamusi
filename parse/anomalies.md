@@ -2,3 +2,4 @@
 - suffixes e.g. swa-eng-e -enye, -enu, -enyewe
 - raison d'etre/rake parsing error
 - bee/bonnet
+- chafu/chafua/chafuka
