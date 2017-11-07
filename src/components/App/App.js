@@ -93,7 +93,7 @@ class App extends Component {
       dictionary: direction === "eng-swa" ? swaEngDict : engSwaDict
     });
   };
-  
+
   render() {
     const {
       page,

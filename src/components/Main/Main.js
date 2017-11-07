@@ -79,7 +79,7 @@ const Main = ({
   onShowSaved,
   onSearch, 
   onSaveEntry,
-  searching 
+  searching,
 }) => {
   
   const entries = loadEntries(dictionary, page);
@@ -159,9 +159,9 @@ const Main = ({
         }
       {showingSaved && 
         <ul>
-          {/*<Anchor active={showingSaved} onClick={onShowSaved}>
+          <Anchor active={showingSaved} /*onClick={onSaveToGoogleDrive}*/>
             {englishToSwahili ? "Save to Google Drive" : "Hifadhi kwa Google Drive"}
-      </Anchor>*/}
+          </Anchor>}
           <SavedCount>
             {englishToSwahili
               ? `${savedCount.toLocaleString()} words` 

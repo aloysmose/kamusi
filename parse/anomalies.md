@@ -3,3 +3,4 @@
 - raison d'etre/rake parsing error
 - bee/bonnet
 - chafu/chafua/chafuka
+- replace � with ' or &mdash;
